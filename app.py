@@ -32,7 +32,7 @@ def list_prof(list):
     elif list == 'ul':
         return render_template('list_prof.html', professions=professions, list_type='ul')
     else:
-        return "Invalid parameter. Please use 'ol' or 'ul'."
+        return "Передан неверный параметр. Пожалуйста, используйте 'ol' или 'ul'."
 
 
 @app.route('/distribution')
@@ -108,7 +108,7 @@ def astronaut_selection():
         body += f"Готовы ли остаться на Марсе?: {stay_on_mars}\n"
 
         msg = MIMEMultipart()
-        msg['From'] = 'ivan.shpeks@mail.ru'
+        msg['From'] = 'почта отправителя'
         msg['To'] = email
         msg['Subject'] = 'Резюме астронавта'
 
@@ -125,9 +125,9 @@ def astronaut_selection():
         try:
             server = smtplib.SMTP('smtp.mail.ru', 587)
             server.starttls()
-            server.login('ivan.shpeks@mail.ru', 'UEr8XQKFDbfvXGUyqWbj')
+            server.login('почта отправителя', 'пароль приложения')
             text = msg.as_string()
-            server.sendmail('ivan.shpeks@mail.ru', email, text)
+            server.sendmail('почта отправителя', email, text)
             server.quit()
             message = 'Резюме успешно отправлено'
             form = AstronautSelectionForm()
